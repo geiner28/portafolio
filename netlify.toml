@@ -1,0 +1,53 @@
+# Configuración de Netlify para el portafolio de SCOUPE
+
+[build]
+  # Directorio de publicación (raíz del proyecto)
+  publish = "."
+  
+  # No hay proceso de build necesario para sitios estáticos HTML
+  command = "echo 'No build required'"
+
+# Configuración deHeaders para mejor rendimiento y seguridad
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Habilitar caché para archivos estáticos
+    Cache-Control = "public, max-age=31536000"
+    
+    # Seguridad
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer-when-downgrade"
+
+# Headers específicos para archivos HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Headers para archivos JSON de animaciones
+[[headers]]
+  for = "/assets/animations/*.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redireccionamiento de URLs antiguas si es necesario
+[[redirects]]
+  from = "/index2.html"
+  to = "/pages/automatizacion.html"
+  status = 301
+  force = true
+
+# Redireccionamiento para URLs sin extensión
+[[redirects]]
+  from = "/automatizacion"
+  to = "/pages/automatizacion.html"
+  status = 200
+
+# Página de error 404 personalizada
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

@@ -1,0 +1,15 @@
+# Reglas de redireccionamiento para Netlify
+
+# Redirigir index2.html antiguo a la nueva ubicación
+/index2.html           /pages/automatizacion.html    301
+/index2               /pages/automatizacion.html    301
+
+# URL amigable para automatización
+/automatizacion       /pages/automatizacion.html    200
+/ia                   /pages/automatizacion.html    200
+
+# Asegurar que las URLs funcionen sin extensión .html
+/home                 /index.html                    200
+
+# SPA fallback - redirigir todas las rutas no encontradas al index
+/*                    /index.html                    404
