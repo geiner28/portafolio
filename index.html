@@ -351,6 +351,47 @@
             display: block;
         }
         
+        /* Loading spinner para imágenes */
+        .img-container {
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+        }
+        
+        .img-container img {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .img-container img.loaded {
+            opacity: 1;
+        }
+        
+        .img-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .img-container img.loaded + .img-loader {
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
         /* Menú móvil mejorado */
         #mobile-menu {
             background: rgba(10, 10, 10, 0.98);
@@ -2023,7 +2064,7 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
         
         // ========== MODAL TIPFOOD CON CARRUSEL ==========
         let tipfoodCurrentSlide = 0;
-        const tipfoodTotalSlides = 16;
+        const tipfoodTotalSlides = 19;
         
         function openTipfoodModal() {
             const modal = document.getElementById('tipfood-modal');
@@ -2135,7 +2176,10 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
                 </button>
             </div>
             <div class="modal-body">
-                <img src="assets/images/sabentix/sabentix.webp" alt="Sabentix - Diseño completo" class="w-full h-auto" loading="lazy">
+                <div class="img-container">
+                    <img src="assets/svgs/sabentix.svg" alt="Sabentix - Diseño completo" class="w-full h-auto" onload="this.classList.add('loaded')">
+                    <div class="img-loader"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -2170,26 +2214,29 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
                     
                     <!-- Track del carrusel -->
                     <div id="tipfood-carousel-track" class="carousel-track">
-                        <div class="carousel-slide"><img src="assets/images/tipfood/portada.webp" alt="TipFood - Portada" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/portada-1.webp" alt="TipFood - Portada 1" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/portada-2.webp" alt="TipFood - Portada 2" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/portada-3.webp" alt="TipFood - Portada 3" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/ingresos y registros.webp" alt="TipFood - Ingresos y Registros" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 3.webp" alt="TipFood - Pantalla 3" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 4.webp" alt="TipFood - Pantalla 4" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 5.webp" alt="TipFood - Pantalla 5" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 6.webp" alt="TipFood - Pantalla 6" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 8.webp" alt="TipFood - Pantalla 8" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 11.webp" alt="TipFood - Pantalla 11" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 12.webp" alt="TipFood - Pantalla 12" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 14.webp" alt="TipFood - Pantalla 14" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 15.webp" alt="TipFood - Pantalla 15" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 16.webp" alt="TipFood - Pantalla 16" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="assets/images/tipfood/iPhone 14 & 15 Pro Max - 17.webp" alt="TipFood - Pantalla 17" loading="lazy"></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/portada.svg" alt="TipFood - Portada" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/portada-1.svg" alt="TipFood - Portada 1" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/portada-2.svg" alt="TipFood - Portada 2" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/portada-3.svg" alt="TipFood - Portada 3" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/ingresos y registros.svg" alt="TipFood - Ingresos y Registros" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 3.svg" alt="TipFood - Pantalla 3" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 4.svg" alt="TipFood - Pantalla 4" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 5.svg" alt="TipFood - Pantalla 5" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 6.svg" alt="TipFood - Pantalla 6" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 7.svg" alt="TipFood - Pantalla 7" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 8.svg" alt="TipFood - Pantalla 8" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 9.svg" alt="TipFood - Pantalla 9" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 10.svg" alt="TipFood - Pantalla 10" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 11.svg" alt="TipFood - Pantalla 11" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 12.svg" alt="TipFood - Pantalla 12" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 14.svg" alt="TipFood - Pantalla 14" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 15.svg" alt="TipFood - Pantalla 15" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 16.svg" alt="TipFood - Pantalla 16" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
+                        <div class="carousel-slide"><div class="img-container"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 17.svg" alt="TipFood - Pantalla 17" onload="this.classList.add('loaded')"><div class="img-loader"></div></div></div>
                     </div>
                     
                     <!-- Contador -->
-                    <div id="tipfood-counter" class="carousel-counter">1 / 16</div>
+                    <div id="tipfood-counter" class="carousel-counter">1 / 19</div>
                     
                     <!-- Dots de navegación -->
                     <div id="tipfood-dots" class="carousel-dots">
@@ -2209,6 +2256,9 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
                         <button class="carousel-dot" onclick="tipfoodGoToSlide(13)"></button>
                         <button class="carousel-dot" onclick="tipfoodGoToSlide(14)"></button>
                         <button class="carousel-dot" onclick="tipfoodGoToSlide(15)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(16)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(17)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(18)"></button>
                     </div>
                 </div>
             </div>
@@ -2264,7 +2314,10 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
                         </svg>
                         Volver
                     </button>
-                    <img src="assets/images/etanol/etanol-phones.webp" alt="Etanol Camisetas - Versión Móvil" class="w-full h-auto rounded-xl" loading="lazy">
+                    <div class="img-container">
+                        <img src="assets/svgs/etanol phones.svg" alt="Etanol Camisetas - Versión Móvil" class="w-full h-auto rounded-xl" onload="this.classList.add('loaded')">
+                        <div class="img-loader"></div>
+                    </div>
                 </div>
                 
                 <!-- Vista Desktop -->
@@ -2275,7 +2328,10 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
                         </svg>
                         Volver
                     </button>
-                    <img src="assets/images/etanol/etanol-pc.webp" alt="Etanol Camisetas - Versión Desktop" class="w-full h-auto rounded-xl" loading="lazy">
+                    <div class="img-container">
+                        <img src="assets/svgs/etanol pc.svg" alt="Etanol Camisetas - Versión Desktop" class="w-full h-auto rounded-xl" onload="this.classList.add('loaded')">
+                        <div class="img-loader"></div>
+                    </div>
                 </div>
             </div>
         </div>
