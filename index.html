@@ -93,6 +93,264 @@
             background-size: 40px 40px;
         }
         
+        /* Modal de proyecto */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 90vh;
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 100px rgba(255, 255, 255, 0.05);
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(90vh - 100px);
+        }
+        
+        .modal-body img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        /* Carrusel de imágenes */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .carousel-slide img {
+            max-height: 70vh;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .carousel-counter {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-top: 12px;
+        }
+        
+        /* Selector de dispositivo */
+        .device-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            min-height: 400px;
+        }
+        
+        .device-selector h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .device-options {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .device-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 30px 40px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .device-option:hover {
+            background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .device-option svg {
+            width: 60px;
+            height: 60px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .device-option:hover svg {
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .device-option span {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .device-option:hover span {
+            color: white;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .etanol-view {
+            display: none;
+        }
+        
+        .etanol-view.active {
+            display: block;
+        }
+        
         /* Menú móvil mejorado */
         #mobile-menu {
             background: rgba(10, 10, 10, 0.98);
@@ -169,8 +427,8 @@
     <nav class="glass-effect fixed w-full z-50 py-4 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
                <div class="flex items-center space-x-2 mb-6">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-white to-gray-400 flex items-center justify-center">
-                            <span class="font-bold text-black text-xl" style="font-family: 'Lora', serif;">SC</span>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center">
+                            <img src="./assets/icons/logo sc.png" alt="SCOUPE Logo" class="w-full h-full object-contain">
                         </div>
                         <span class="text-xl font-bold gradient-text" style="font-family: 'Lora', serif;">SCOUPE</span>
                     </div>
@@ -687,10 +945,10 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Proyecto 1 -->
-                <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp">
+                <!-- Proyecto 1 - VitalIA -->
+                <a href="assets/pdfs/vitalia.pdf" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp block">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="vitalia.png" alt="Proyecto 1" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="vitalia.png" alt="VitalIA - Sistema de salud con IA" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -704,9 +962,9 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                         </div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                      
+                        <span class="px-6 py-3 bg-white text-black font-medium rounded-full">Ver PDF</span>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Proyecto 2 -->
                 <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-1s">
@@ -728,10 +986,10 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                     </div>
                 </div>
                 
-                <!-- Proyecto 3 -->
-                <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s">
+                <!-- Proyecto 3 - Sabentix -->
+                <div onclick="openSabentixModal()" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s cursor-pointer">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="sabentix.png" alt="Proyecto 3" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="sabentix.png" alt="Sabentix - Portal educativo" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -744,34 +1002,34 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                         </div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                  
+                        <span class="px-6 py-3 bg-white text-black font-medium rounded-full">Ver Proyecto</span>
                     </div>
                 </div>
                 
                 <!-- Proyecto 4 -->
-                <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp">
+                <a href="https://pedal1817.com" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp block">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="gamercrax.png" alt="Proyecto 4" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="PEDAL1817.png" alt="Pedal 1817 - Tours en bicicleta" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <h3 class="text-xl font-bold text-white mb-2">GamerCrax</h3>
-                        <p class="text-gray-300 mb-4">Blog monetizado sobre videojuegos.</p>
+                        <h3 class="text-xl font-bold text-white mb-2">PEDAL 1817</h3>
+                        <p class="text-gray-300 mb-4">PAGINA WEB DE RESERVA DE TOURS.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-white bg-opacity-10 rounded-full text-xs text-white">Blogger</span>
+                            <span class="px-3 py-1 bg-white bg-opacity-10 rounded-full text-xs text-white">Shopify</span>
                             <span class="px-3 py-1 bg-white bg-opacity-10 rounded-full text-xs text-white">HTML y CSS</span>
-                            <span class="px-3 py-1 bg-white bg-opacity-10 rounded-full text-xs text-white">Adsterra</span>
+                            <span class="px-3 py-1 bg-white bg-opacity-10 rounded-full text-xs text-white">Liquid</span>
                         </div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                    
+                        <span class="px-6 py-3 bg-white text-black font-medium rounded-full">Visitar Sitio</span>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Proyecto 5 -->
-                <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-1s">
+                <!-- Proyecto 5 - TipFood -->
+                <div onclick="openTipfoodModal()" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-1s cursor-pointer">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="tipfood.png" alt="Proyecto 5" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="tipfood.png" alt="TipFood - App de recomendaciones" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -784,14 +1042,14 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                         </div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                 
+                        <span class="px-6 py-3 bg-white text-black font-medium rounded-full">Ver Proyecto</span>
                     </div>
                 </div>
                 
-                <!-- Proyecto 6 -->
-                <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s">
+                <!-- Proyecto 6 - Etanol Camisetas -->
+                <div onclick="openEtanolModal()" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s cursor-pointer">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="Etanol.png" alt="Proyecto 6" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="Etanol.png" alt="Etanol Camisetas - Tienda de ropa" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -804,9 +1062,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                         </div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <a href="#" class="px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-gray-200 transition duration-300">
-                            Ver Detalles
-                        </a>
+                        <span class="px-6 py-3 bg-white text-black font-medium rounded-full">Ver Proyecto</span>
                     </div>
                 </div>
             </div>
@@ -1743,6 +1999,292 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); // Ejecutar una vez al cargar la página
         });
+        
+        // ========== MODAL SABENTIX ==========
+        function openSabentixModal() {
+            const modal = document.getElementById('sabentix-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSabentixModal() {
+            const modal = document.getElementById('sabentix-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSabentixModal();
+                closeTipfoodModal();
+            }
+        });
+        
+        // ========== MODAL TIPFOOD CON CARRUSEL ==========
+        let tipfoodCurrentSlide = 0;
+        const tipfoodTotalSlides = 19;
+        
+        function openTipfoodModal() {
+            const modal = document.getElementById('tipfood-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            tipfoodCurrentSlide = 0;
+            updateTipfoodCarousel();
+        }
+        
+        function closeTipfoodModal() {
+            const modal = document.getElementById('tipfood-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function tipfoodPrevSlide() {
+            tipfoodCurrentSlide = (tipfoodCurrentSlide - 1 + tipfoodTotalSlides) % tipfoodTotalSlides;
+            updateTipfoodCarousel();
+        }
+        
+        function tipfoodNextSlide() {
+            tipfoodCurrentSlide = (tipfoodCurrentSlide + 1) % tipfoodTotalSlides;
+            updateTipfoodCarousel();
+        }
+        
+        function tipfoodGoToSlide(index) {
+            tipfoodCurrentSlide = index;
+            updateTipfoodCarousel();
+        }
+        
+        function updateTipfoodCarousel() {
+            const track = document.getElementById('tipfood-carousel-track');
+            const counter = document.getElementById('tipfood-counter');
+            const dots = document.querySelectorAll('#tipfood-dots .carousel-dot');
+            
+            if (track) {
+                track.style.transform = `translateX(-${tipfoodCurrentSlide * 100}%)`;
+            }
+            if (counter) {
+                counter.textContent = `${tipfoodCurrentSlide + 1} / ${tipfoodTotalSlides}`;
+            }
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === tipfoodCurrentSlide);
+            });
+        }
+        
+        // Navegación con teclado para TipFood
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('tipfood-modal');
+            if (modal && modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') tipfoodPrevSlide();
+                if (e.key === 'ArrowRight') tipfoodNextSlide();
+            }
+        });
+        
+        // ========== MODAL ETANOL CON SUBMENU ==========
+        function openEtanolModal() {
+            const modal = document.getElementById('etanol-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Mostrar selector de dispositivo por defecto
+            showEtanolSelector();
+        }
+        
+        function closeEtanolModal() {
+            const modal = document.getElementById('etanol-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function showEtanolSelector() {
+            document.getElementById('etanol-selector').classList.add('active');
+            document.getElementById('etanol-phones').classList.remove('active');
+            document.getElementById('etanol-desktop').classList.remove('active');
+        }
+        
+        function showEtanolPhones() {
+            document.getElementById('etanol-selector').classList.remove('active');
+            document.getElementById('etanol-phones').classList.add('active');
+            document.getElementById('etanol-desktop').classList.remove('active');
+        }
+        
+        function showEtanolDesktop() {
+            document.getElementById('etanol-selector').classList.remove('active');
+            document.getElementById('etanol-phones').classList.remove('active');
+            document.getElementById('etanol-desktop').classList.add('active');
+        }
+        
+        // Cerrar Etanol con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeEtanolModal();
+            }
+        });
     </script>
+    
+    <!-- Modal Sabentix -->
+    <div id="sabentix-modal" class="modal-overlay" onclick="if(event.target === this) closeSabentixModal()">
+        <div class="modal-content" style="width: 100%; max-width: 1200px;">
+            <div class="modal-header">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">SABENTIX</h2>
+                    <p class="text-gray-400 text-sm mt-1">Diseño de marca e interfaces para portal educativo</p>
+                </div>
+                <button class="modal-close" onclick="closeSabentixModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/svgs/sabentix.svg" alt="Sabentix - Diseño completo" class="w-full h-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal TipFood con Carrusel -->
+    <div id="tipfood-modal" class="modal-overlay" onclick="if(event.target === this) closeTipfoodModal()">
+        <div class="modal-content" style="width: 100%; max-width: 900px;">
+            <div class="modal-header">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">TipFood</h2>
+                    <p class="text-gray-400 text-sm mt-1">Diseño de interfaz para aplicación de recomendaciones de comida</p>
+                </div>
+                <button class="modal-close" onclick="closeTipfoodModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="carousel-container">
+                    <!-- Botones de navegación -->
+                    <button class="carousel-btn prev" onclick="tipfoodPrevSlide()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-btn next" onclick="tipfoodNextSlide()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Track del carrusel -->
+                    <div id="tipfood-carousel-track" class="carousel-track">
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/portada.svg" alt="TipFood - Portada"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/portada-1.svg" alt="TipFood - Portada 1"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/portada-2.svg" alt="TipFood - Portada 2"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/portada-3.svg" alt="TipFood - Portada 3"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/ingresos y registros.svg" alt="TipFood - Ingresos y Registros"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 3.svg" alt="TipFood - Pantalla 3"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 4.svg" alt="TipFood - Pantalla 4"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 5.svg" alt="TipFood - Pantalla 5"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 6.svg" alt="TipFood - Pantalla 6"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 7.svg" alt="TipFood - Pantalla 7"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 8.svg" alt="TipFood - Pantalla 8"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 9.svg" alt="TipFood - Pantalla 9"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 10.svg" alt="TipFood - Pantalla 10"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 11.svg" alt="TipFood - Pantalla 11"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 12.svg" alt="TipFood - Pantalla 12"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 14.svg" alt="TipFood - Pantalla 14"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 15.svg" alt="TipFood - Pantalla 15"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 16.svg" alt="TipFood - Pantalla 16"></div>
+                        <div class="carousel-slide"><img src="assets/svgs/Untitled (2)/iPhone 14 & 15 Pro Max - 17.svg" alt="TipFood - Pantalla 17"></div>
+                    </div>
+                    
+                    <!-- Contador -->
+                    <div id="tipfood-counter" class="carousel-counter">1 / 19</div>
+                    
+                    <!-- Dots de navegación -->
+                    <div id="tipfood-dots" class="carousel-dots">
+                        <button class="carousel-dot active" onclick="tipfoodGoToSlide(0)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(1)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(2)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(3)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(4)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(5)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(6)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(7)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(8)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(9)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(10)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(11)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(12)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(13)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(14)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(15)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(16)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(17)"></button>
+                        <button class="carousel-dot" onclick="tipfoodGoToSlide(18)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Etanol con Selector de Dispositivo -->
+    <div id="etanol-modal" class="modal-overlay" onclick="if(event.target === this) closeEtanolModal()">
+        <div class="modal-content" style="width: 100%; max-width: 1200px;">
+            <div class="modal-header">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Etanol Camisetas</h2>
+                    <p class="text-gray-400 text-sm mt-1">Sitio web para tienda de ropa</p>
+                </div>
+                <button class="modal-close" onclick="closeEtanolModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Selector de dispositivo -->
+                <div id="etanol-selector" class="etanol-view active">
+                    <div class="device-selector">
+                        <h3>Selecciona una vista</h3>
+                        <div class="device-options">
+                            <!-- Opción Móvil -->
+                            <div class="device-option" onclick="showEtanolPhones()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="5" y="2" width="14" height="20" rx="3" ry="3"/>
+                                    <line x1="12" y1="18" x2="12" y2="18.01" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <span>📱 Móvil</span>
+                            </div>
+                            <!-- Opción Desktop -->
+                            <div class="device-option" onclick="showEtanolDesktop()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                                <span>🖥️ Desktop</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vista Phones -->
+                <div id="etanol-phones" class="etanol-view">
+                    <button class="back-btn" onclick="showEtanolSelector()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Volver
+                    </button>
+                    <img src="assets/svgs/etanol phones.svg" alt="Etanol Camisetas - Versión Móvil" class="w-full h-auto rounded-xl">
+                </div>
+                
+                <!-- Vista Desktop -->
+                <div id="etanol-desktop" class="etanol-view">
+                    <button class="back-btn" onclick="showEtanolSelector()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Volver
+                    </button>
+                    <img src="assets/svgs/etanol pc.svg" alt="Etanol Camisetas - Versión Desktop" class="w-full h-auto rounded-xl">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
