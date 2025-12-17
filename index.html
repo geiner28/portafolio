@@ -3,12 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SCOUPE - Agencia de desarrollo web y soluciones digitales. Creamos landing pages, sitios web profesionales y aplicaciones con inteligencia artificial.">
     <title>SCOUPE - Soluciones Digitales Futuristas</title>
+    
+    <!-- Preconexiones para mejorar rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://assets9.lottiefiles.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- DNS Prefetch para recursos secundarios -->
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- Precargar fuente crítica -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" as="style">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <!-- Animate.css con media print para no bloquear -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"/>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/></noscript>
+    
+    <!-- Lottie Player cargado de forma diferida -->
+    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <!-- Fuentes con display=swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        /* CSS Crítico - Reservar espacio para evitar CLS */
+        .lottie-container {
+            min-height: 200px;
+            width: 100%;
+            contain: layout;
+        }
+        .lottie-container-hero {
+            min-height: 400px;
+            aspect-ratio: 1/1;
+            contain: layout;
+        }
         
         body {
             font-family: 'Montserrat', sans-serif;
@@ -73,12 +109,22 @@
         
         .floating {
             animation: floating 6s ease-in-out infinite;
+            will-change: transform;
         }
         
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
+        }
+        
+        /* Optimización de rendimiento para animaciones */
+        .hover-scale {
+            will-change: transform;
+        }
+        
+        .animate__animated {
+            will-change: transform, opacity;
         }
         
         .text-stroke {
@@ -469,7 +515,7 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
                <div class="flex items-center space-x-2 mb-6">
                         <div class="w-12 h-12 rounded-full flex items-center justify-center">
-                            <img src="./assets/icons/logo sc.png" alt="SCOUPE Logo" class="w-full h-full object-contain">
+                            <img src="./assets/icons/logo-sc.webp" alt="SCOUPE Logo" class="w-full h-full object-contain" width="48" height="48" fetchpriority="high">
                         </div>
                         <span class="text-xl font-bold gradient-text" style="font-family: 'Lora', serif;">SCOUPE</span>
                     </div>
@@ -570,8 +616,9 @@
                     </div>
                 </div>
                 
-                <div class="animate__animated animate__fadeInRight">
-                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="1" style="width: 100%; height: auto;" loop autoplay class="floating"></lottie-player>
+                <!-- Contenedor con dimensiones fijas para evitar CLS -->
+                <div class="animate__animated animate__fadeInRight" style="min-height: 400px; aspect-ratio: 1/1;">
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay class="floating"></lottie-player>
                 </div>
             </div>
         </div>
@@ -623,8 +670,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
  
                 
-                <div class="animate__animated animate__fadeInRight">
-                    <lottie-player src="assets/animations/animacion1.json" background="transparent" speed="1" style="width: 100%; height: auto;" loop autoplay class="floating"></lottie-player>
+                <div class="animate__animated animate__fadeInRight lottie-container-hero">
+                    <lottie-player src="assets/animations/animacion1.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay class="floating"></lottie-player>
                 </div>
                                <div class="animate__animated animate__fadeInLeft">
                     <div class="inline-flex items-center px-4 py-2 rounded-full bg-black bg-opacity-50 border border-[#4FACFE] text-[#4FACFE] text-sm mb-6">
@@ -906,7 +953,9 @@ Creamos una interacción personalizada para entender tus necesidades, objetivos 
                         </div>
                         <div class="lg:order-2 flex justify-center lg:justify-start">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <lottie-player src="assets/animations/animacion2.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="lottie-container">
+                                    <lottie-player src="assets/animations/animacion2.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -925,7 +974,9 @@ Creamos prototipos y diseños visuales que reflejan tu marca y mejoran la experi
                         </div>
                         <div class="lg:order-1 flex justify-center lg:justify-end">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <lottie-player src="assets/animations/animacion3.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="lottie-container">
+                                    <lottie-player src="assets/animations/animacion3.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -944,7 +995,9 @@ Implementamos soluciones tecnológicas con las mejores prácticas y los estánda
                         </div>
                         <div class="lg:order-2 flex justify-center lg:justify-start">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <lottie-player src="assets/animations/animacion4.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="lottie-container">
+                                    <lottie-player src="assets/animations/animacion4.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -964,7 +1017,9 @@ Impulsamos tu proyecto con calidad garantizada y un soporte constante que genera
                         </div>
                         <div class="lg:order-1 flex justify-center lg:justify-end">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <lottie-player src="assets/animations/animacion5.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="lottie-container">
+                                    <lottie-player src="assets/animations/animacion5.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -989,7 +1044,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                 <!-- Proyecto 1 - VitalIA -->
                 <a href="assets/pdfs/vitalia.pdf" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp block">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="assets/images/vitalia.webp" alt="VitalIA - Sistema de salud con IA" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="assets/images/vitalia.webp" alt="VitalIA - Sistema de salud con IA" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -1010,7 +1065,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                 <!-- Proyecto 2 -->
                 <div class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="assets/images/freefire.webp" alt="Proyecto 2" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="assets/images/freefire.webp" alt="Proyecto 2" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -1030,7 +1085,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                 <!-- Proyecto 3 - Sabentix -->
                 <div onclick="openSabentixModal()" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s cursor-pointer">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="assets/images/sabentix.webp" alt="Sabentix - Portal educativo" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="assets/images/sabentix.webp" alt="Sabentix - Portal educativo" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -1050,7 +1105,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                 <!-- Proyecto 4 -->
                 <a href="https://pedal1817.com" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp block">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="assets/images/PEDAL1817.webp" alt="Pedal 1817 - Tours en bicicleta" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="assets/images/PEDAL1817.webp" alt="Pedal 1817 - Tours en bicicleta" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -1070,7 +1125,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                 <!-- Proyecto 5 - TipFood -->
                 <div onclick="openTipfoodModal()" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-1s cursor-pointer">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="assets/images/tipfood.webp" alt="TipFood - App de recomendaciones" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="assets/images/tipfood.webp" alt="TipFood - App de recomendaciones" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -1090,7 +1145,7 @@ Descubre algunos de nuestros proyectos más recientes, creados para inspirar, de
                 <!-- Proyecto 6 - Etanol Camisetas -->
                 <div onclick="openEtanolModal()" class="group relative overflow-hidden rounded-xl hover-scale transition-all duration-500 animate__animated animate__fadeInUp animate__delay-2s cursor-pointer">
                     <div class="aspect-w-16 aspect-h-9 bg-gray-800 overflow-hidden">
-                        <img src="assets/images/Etanol.webp" alt="Etanol Camisetas - Tienda de ropa" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        <img src="assets/images/Etanol.webp" alt="Etanol Camisetas - Tienda de ropa" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
                     <div class="absolute bottom-0 left-0 p-6 w-full">
@@ -1603,6 +1658,7 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
           src="assets/images/IMG_1740.webp"
           alt="Equipo SCOUPE"
           class="w-full h-full object-cover filter blur-sm hover:filter-none transition duration-300"
+          loading="lazy"
         />
       </div>
 
@@ -1612,6 +1668,7 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
           src="assets/images/IMG_3791.webp"
           alt="Oficina"
           class="w-full h-full object-cover filter blur-sm hover:filter-none transition duration-300"
+          loading="lazy"
         />
       </div>
     </div>
@@ -1622,6 +1679,7 @@ Contamos con un equipo de desarrolladores, diseñadores y estrategas digitales a
         src="assets/images/IMG_8063.webp"
         alt="Reunión"
         class="w-full h-full object-cover filter blur-sm hover:filter-none transition duration-300"
+        loading="lazy"
       />
     </div>
   </div>
