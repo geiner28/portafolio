@@ -11,11 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://assets9.lottiefiles.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    
-    <!-- DNS Prefetch para recursos secundarios -->
-    <link rel="dns-prefetch" href="https://unpkg.com">
     
     <!-- Precargar fuente crítica -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" as="style">
@@ -26,9 +22,6 @@
     <!-- Animate.css con media print para no bloquear -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"/>
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/></noscript>
-    
-    <!-- Lottie Player cargado de forma diferida -->
-    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
     <!-- Fuentes con display=swap -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
@@ -44,6 +37,57 @@
             min-height: 400px;
             aspect-ratio: 1/1;
             contain: layout;
+        }
+        
+        /* Animaciones SVG que reemplazan Lottie */
+        .hero-animation {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-svg {
+            width: 280px;
+            height: 280px;
+        }
+        .pulse-ring {
+            animation: pulse-ring 2s ease-out infinite;
+            transform-origin: center;
+        }
+        .pulse-ring-delay {
+            animation: pulse-ring 2s ease-out infinite 0.5s;
+            transform-origin: center;
+        }
+        .rotate-slow {
+            animation: rotate-slow 20s linear infinite;
+            transform-origin: center;
+        }
+        .float-element {
+            animation: float-element 3s ease-in-out infinite;
+        }
+        @keyframes pulse-ring {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes float-element {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .step-animation {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step-svg {
+            width: 120px;
+            height: 120px;
         }
         
         body {
@@ -618,7 +662,26 @@
                 
                 <!-- Contenedor con dimensiones fijas para evitar CLS -->
                 <div class="animate__animated animate__fadeInRight" style="min-height: 400px; aspect-ratio: 1/1;">
-                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_kkflmtur.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay class="floating"></lottie-player>
+                    <div class="hero-animation floating">
+                        <svg class="hero-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="80" stroke="rgba(255,255,255,0.1)" stroke-width="1" class="pulse-ring"/>
+                            <circle cx="100" cy="100" r="60" stroke="rgba(255,255,255,0.15)" stroke-width="1" class="pulse-ring-delay"/>
+                            <g class="rotate-slow">
+                                <circle cx="100" cy="30" r="8" fill="white" opacity="0.8"/>
+                                <circle cx="170" cy="100" r="6" fill="white" opacity="0.6"/>
+                                <circle cx="100" cy="170" r="8" fill="white" opacity="0.8"/>
+                                <circle cx="30" cy="100" r="6" fill="white" opacity="0.6"/>
+                            </g>
+                            <circle cx="100" cy="100" r="40" fill="url(#grad1)" class="float-element"/>
+                            <text x="100" y="108" text-anchor="middle" fill="white" font-size="24" font-weight="bold">&lt;/&gt;</text>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#111;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -671,7 +734,27 @@
  
                 
                 <div class="animate__animated animate__fadeInRight lottie-container-hero">
-                    <lottie-player src="assets/animations/animacion1.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay class="floating"></lottie-player>
+                    <div class="hero-animation floating">
+                        <svg class="hero-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="80" stroke="#4FACFE" stroke-width="1" opacity="0.3" class="pulse-ring"/>
+                            <circle cx="100" cy="100" r="60" stroke="#00F2FE" stroke-width="1" opacity="0.4" class="pulse-ring-delay"/>
+                            <g class="rotate-slow">
+                                <circle cx="100" cy="25" r="6" fill="#4FACFE"/>
+                                <circle cx="175" cy="100" r="5" fill="#00F2FE"/>
+                                <circle cx="100" cy="175" r="6" fill="#4FACFE"/>
+                                <circle cx="25" cy="100" r="5" fill="#00F2FE"/>
+                            </g>
+                            <circle cx="100" cy="100" r="45" fill="url(#gradIA)" class="float-element"/>
+                            <text x="100" y="105" text-anchor="middle" fill="white" font-size="20" font-weight="bold">IA</text>
+                            <path d="M85 120 L100 130 L115 120" stroke="#4FACFE" stroke-width="2" fill="none" opacity="0.8"/>
+                            <defs>
+                                <linearGradient id="gradIA" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1a3a4a;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#0a1a2a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                 </div>
                                <div class="animate__animated animate__fadeInLeft">
                     <div class="inline-flex items-center px-4 py-2 rounded-full bg-black bg-opacity-50 border border-[#4FACFE] text-[#4FACFE] text-sm mb-6">
@@ -955,8 +1038,12 @@ Creamos una interacción personalizada para entender tus necesidades, objetivos 
                         </div>
                         <div class="lg:order-2 flex justify-center lg:justify-start">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <div class="lottie-container">
-                                    <lottie-player src="assets/animations/animacion2.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="step-animation">
+                                    <svg class="step-svg float-element" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="40" cy="40" r="25" stroke="white" stroke-width="3" fill="none"/>
+                                        <line x1="58" y1="58" x2="80" y2="80" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                                        <circle cx="40" cy="40" r="15" stroke="white" stroke-width="1" opacity="0.5" class="pulse-ring"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -976,8 +1063,16 @@ Creamos prototipos y diseños visuales que reflejan tu marca y mejoran la experi
                         </div>
                         <div class="lg:order-1 flex justify-center lg:justify-end">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <div class="lottie-container">
-                                    <lottie-player src="assets/animations/animacion3.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="step-animation">
+                                    <svg class="step-svg float-element" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="15" y="15" width="70" height="50" rx="4" stroke="white" stroke-width="3" fill="none"/>
+                                        <line x1="15" y1="30" x2="85" y2="30" stroke="white" stroke-width="2"/>
+                                        <circle cx="25" cy="22" r="3" fill="white" opacity="0.7"/>
+                                        <circle cx="35" cy="22" r="3" fill="white" opacity="0.7"/>
+                                        <rect x="25" y="40" width="50" height="15" rx="2" stroke="white" stroke-width="1" opacity="0.5"/>
+                                        <line x1="50" y1="75" x2="50" y2="90" stroke="white" stroke-width="3"/>
+                                        <line x1="35" y1="90" x2="65" y2="90" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -997,8 +1092,12 @@ Implementamos soluciones tecnológicas con las mejores prácticas y los estánda
                         </div>
                         <div class="lg:order-2 flex justify-center lg:justify-start">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <div class="lottie-container">
-                                    <lottie-player src="assets/animations/animacion4.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="step-animation">
+                                    <svg class="step-svg float-element" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M35 35 L15 50 L35 65" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                        <path d="M65 35 L85 50 L65 65" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                        <line x1="55" y1="25" x2="45" y2="75" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -1019,8 +1118,16 @@ Impulsamos tu proyecto con calidad garantizada y un soporte constante que genera
                         </div>
                         <div class="lg:order-1 flex justify-center lg:justify-end">
                             <div class="glass-effect p-6 rounded-xl w-full max-w-md hover-scale">
-                                <div class="lottie-container">
-                                    <lottie-player src="assets/animations/animacion5.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
+                                <div class="step-animation">
+                                    <svg class="step-svg float-element" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M50 15 C50 15 65 30 65 55 L50 70 L35 55 C35 30 50 15 50 15Z" stroke="white" stroke-width="3" fill="none"/>
+                                        <circle cx="50" cy="40" r="6" stroke="white" stroke-width="2" fill="none"/>
+                                        <path d="M35 55 L25 65 L35 60" stroke="white" stroke-width="2" fill="none"/>
+                                        <path d="M65 55 L75 65 L65 60" stroke="white" stroke-width="2" fill="none"/>
+                                        <path d="M45 70 L45 85" stroke="white" stroke-width="2" opacity="0.6"/>
+                                        <path d="M50 70 L50 90" stroke="white" stroke-width="2" opacity="0.4"/>
+                                        <path d="M55 70 L55 85" stroke="white" stroke-width="2" opacity="0.6"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
